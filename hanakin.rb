@@ -1,10 +1,6 @@
-# Hanakin
+#!/usr/bin/env ruby
 
 require 'date'
-
-year = 2014
-month = 9
-payday = 25
 
 class SuperHanakin
   def initialize(year, month, payday)
@@ -26,7 +22,7 @@ class SuperHanakin
     day.wday == 6 || day.wday == 0
   end
 
-  def Display
+  def Show
     p "Year:#{@year}, Month:#{@month}"
     for i in 1...32
       # 翌月になっていないかチェック
@@ -36,21 +32,21 @@ class SuperHanakin
 
       # 今日がなんの日かチェック
       if IsPayDay(@date) && IsFriday(@date)
-        # 金曜日かつはなきん
-        p "スーパーはなきん"
-      elsif IsPayDay(@date)
-        # 給料日
-        p "給料日だ。やったー"
+        # 金曜日かつはなきんの場合
+        p "FizzBuzz"
       elsif IsFriday(@date)
-        # 金曜日かどうかチェック
-        p "は、はなきんだ〜" 
+        # 金曜日の場合
+        p "Fizz" 
+      elsif IsPayDay(@date)
+        # 給料日の場合
+        p "Buzz"
       else
-        p @date.to_s
+        p @date.day
       end
       @date += 1
     end
   end
 end
 
-hanakin = SuperHanakin.new(year, month, payday)
-hanakin.Display
+hanakin = SuperHanakin.new(2014,9,5)
+hanakin.Show
